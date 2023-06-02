@@ -10,11 +10,16 @@ var charString;
 const lowercase = "abcdefghijklmnopqrstuvwxyz";
 const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numerical = "0123456789";
-const specialty = "~!@#$%^&*()_+";
+const special = "~!@#$%^&*()_+";
 // Get references to the #generate element
 
 // Write password to the #password input
 function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+  passwordText.value = password;
+}
+
   passwordLength = prompt("Please enter a pasword length between 8 and 128 characters long.", 12);
   passwordLengthInt= Math.round(passwordLength);
 
@@ -60,48 +65,57 @@ if (passwordSpec == true){
 console.log("Special characters will be used. " + passwordSpec);
 } while (!passwordLower && !passwordUpper && !passwordNum && !passwordSpec);
 
-if (passwordLower && passwordUpper && passwordNumb && passwordSpec) {
-  charString = 
+if (passwordLower && passwordUpper && passwordNum && passwordSpec) {
+  charString = lowercase.concat(uppercase, numerical, special);
+  console.log(charString);
 }
 
-if (!passwordLower && passwordUpper && passwordNumb && passwordSpec) {
-  charString =
-} else if (passwordLower && !passwordUpper && passwordNumb && passwordSpec) {
-  charString =
-} else if (passwordLower && passwordUpper && !passwordNumb && passwordSpec) {
-  charString =
-}else if (passwordLower && passwordUpper && passwordNumb && !passwordSpec) {
-  charString =
+if (!passwordLower && passwordUpper && passwordNum && passwordSpec) {
+  charString = uppercase.concat(numerical, special);
+  console.log(charString);
+} else if (passwordLower && !passwordUpper && passwordNum && passwordSpec) {
+  charString = lowercase.concat(numerical, special);
+  console.log(charString);
+} else if (passwordLower && passwordUpper && !passwordNum && passwordSpec) {
+  charString =lowercase.concat(uppercase, special);
+  console.log(charString);
+}else if (passwordLower && passwordUpper && passwordNum && !passwordSpec) {
+  charString =lowercase.concat(uppercase, numerical);
+  console.log(charString);
 }
 
-if (!passwordLower && !passwordUpper && passwordNumb && passwordSpec) {
-  charString =
-} else if (!passwordLower && passwordUpper && !passwordNumb && passwordSpec) {
-  charString =
-} else if (!passwordLower && passwordUpper && passwordNumb && !passwordSpec) {
-  charString =
-} else if (passwordLower && !passwordUpper && !passwordNumb && passwordSpec){
-  charString =
-} else if (passwordLower && !passwordUpper && passwordNumb && !passwordSpec){
-  charString =
-} else if (passwordLower && passwordUpper && !passwordNumb && !passwordSpec){
-  charString =
+if (!passwordLower && !passwordUpper && passwordNum && passwordSpec) {
+  charString =numerical.concat(special);
+  console.log(charString);
+} else if (!passwordLower && passwordUpper && !passwordNum && passwordSpec) {
+  charString =uppercase.concat(special);
+  console.log(charString);
+} else if (!passwordLower && passwordUpper && passwordNum && !passwordSpec) {
+  charString =uppercase.concat(numerical);
+  console.log(charString);
+} else if (passwordLower && !passwordUpper && !passwordNum && passwordSpec){
+  charString =lowercase.concat(special);
+  console.log(charString);
+} else if (passwordLower && !passwordUpper && passwordNum && !passwordSpec){
+  charString =lowercase.concat(numerical);
+  console.log(charString);
+} else if (passwordLower && passwordUpper && !passwordNum && !passwordSpec){
+  charString =lowercase.concat(uppercase);
+  console.log(charString);
 }
 
-if (passwordLower && !passwordUpper && !passwordNumb && !passwordSpec) {
-  charString =
-} else if (!passwordLower && passwordUpper && !passwordNumb && !passwordSpec) {
-  charString =  
-} else if (!passwordLower && !passwordUpper && passwordNumb && !passwordSpec) {
-  charString =  
-}else if (!passwordLower && !passwordUpper && !passwordNumb && passwordSpec) {
-  charString =  
-}
-
-
-//   var password = generatePassword();
-//   var passwordText = document.querySelector("#password");
-//   passwordText.value = password;
+if (passwordLower && !passwordUpper && !passwordNum && !passwordSpec) {
+  charString =lowercase;
+  console.log(charString);
+} else if (!passwordLower && passwordUpper && !passwordNum && !passwordSpec) {
+  charString =  uppercase;
+  console.log(charString);
+} else if (!passwordLower && !passwordUpper && passwordNum && !passwordSpec) {
+  charString = numerical;
+  console.log(charString);
+}else if (!passwordLower && !passwordUpper && !passwordNum && passwordSpec) {
+  charString = special;
+  console.log(charString);
 }
 
 // Add event listener to generate button
