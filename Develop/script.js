@@ -1,11 +1,16 @@
 // Assignment code here
 var generateBtn = document.querySelector("#generate");
 var passwordLength;
-var passwordLengthInt
-var passwordLower;
-var passwordUpper;
-var passwordNum;
-var passwordSpec;
+var passwordLengthInt;
+var passwordLower = false;
+var passwordUpper = false;
+var passwordNum = false;
+var passwordSpec = false;
+var charString;
+const lowercase = "abcdefghijklmnopqrstuvwxyz";
+const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numerical = "0123456789";
+const specialty = "~!@#$%^&*()_+";
 // Get references to the #generate element
 
 // Write password to the #password input
@@ -18,13 +23,17 @@ while (passwordLengthInt < 8  || passwordLengthInt > 128 || isNaN(passwordLength
    passwordLengthInt=Math.round(passwordLength);
  }
 alert("Great! You picked a password length of " + passwordLengthInt + " characters.");
+console.log("password length is " + passwordLengthInt + "characters.");
 
+do {
+alert("Please select one of the following to include in your password.")
 passwordLower = confirm("Would you like to include lowercase characters in your password?");
 if (passwordLower == true){
     alert("Great! You chose to use lowercase in your password.");
   } else {
     alert("Oh no! You chose to not use lowercase in your password.");
 }
+console.log("Lowercase characters will be used. " + passwordLower);
 
 passwordUpper = confirm("Would you like to include Uppercase characters?");
 if (passwordUpper == true){
@@ -32,20 +41,63 @@ if (passwordUpper == true){
   } else {
     alert("Oh no! You chose to not use uppercase in your password.");
 }
+console.log("Uppercase characters will be used. " + passwordUpper);
 
 passwordNum = confirm("Would you like to include Numerical characters?");
-if (passwordUpper == true){
+if (passwordNum == true){
   alert("Great! You chose to use Numerical characters in your password.");
 } else {
   alert("Oh no! You chose to not use Numerical characters in your password.");
 }
+console.log("Numerical characters will be used. " + passwordNum);
 
 passwordSpec = confirm("Would you like to include Special characters? (ie. !@#$)");
-if (passwordUpper == true){
+if (passwordSpec == true){
   alert("Great! You chose to use Special characters in your password.");
 } else {
   alert("Oh no! You chose to not use Special characters in your password.");
 }
+console.log("Special characters will be used. " + passwordSpec);
+} while (!passwordLower && !passwordUpper && !passwordNum && !passwordSpec);
+
+if (passwordLower && passwordUpper && passwordNumb && passwordSpec) {
+  charString = 
+}
+
+if (!passwordLower && passwordUpper && passwordNumb && passwordSpec) {
+  charString =
+} else if (passwordLower && !passwordUpper && passwordNumb && passwordSpec) {
+  charString =
+} else if (passwordLower && passwordUpper && !passwordNumb && passwordSpec) {
+  charString =
+}else if (passwordLower && passwordUpper && passwordNumb && !passwordSpec) {
+  charString =
+}
+
+if (!passwordLower && !passwordUpper && passwordNumb && passwordSpec) {
+  charString =
+} else if (!passwordLower && passwordUpper && !passwordNumb && passwordSpec) {
+  charString =
+} else if (!passwordLower && passwordUpper && passwordNumb && !passwordSpec) {
+  charString =
+} else if (passwordLower && !passwordUpper && !passwordNumb && passwordSpec){
+  charString =
+} else if (passwordLower && !passwordUpper && passwordNumb && !passwordSpec){
+  charString =
+} else if (passwordLower && passwordUpper && !passwordNumb && !passwordSpec){
+  charString =
+}
+
+if (passwordLower && !passwordUpper && !passwordNumb && !passwordSpec) {
+  charString =
+} else if (!passwordLower && passwordUpper && !passwordNumb && !passwordSpec) {
+  charString =  
+} else if (!passwordLower && !passwordUpper && passwordNumb && !passwordSpec) {
+  charString =  
+}else if (!passwordLower && !passwordUpper && !passwordNumb && passwordSpec) {
+  charString =  
+}
+
 
 //   var password = generatePassword();
 //   var passwordText = document.querySelector("#password");
