@@ -1,4 +1,4 @@
-// Assignment code here
+// All assignment code located here
 var generateBtn = document.querySelector("#generate");
 var passwordLength;
 var passwordLengthInt;
@@ -7,20 +7,25 @@ var passwordUpper = false;
 var passwordNum = false;
 var passwordSpec = false;
 var charString;
+var charSets= [];
+var password = "";
 const lowercase = "abcdefghijklmnopqrstuvwxyz";
 const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const numerical = "0123456789";
-const special = "~!@#$%^&*()_";
-// Get references to the #generate element
+const special = "#$%&'()*+,-./:;<=>?@[^_`{|}~";
 
-// Write password to the #password input
+// This function writes the password to the text area that is produced by the
+// generatePassword function
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 }
-
+// This function uses a while loop and the Math.round function to ensure the user picks an
+// integer between 8 and 128.  The while loop will have them continue until the entry
+// meets the requirements.  A prompt is then used to alert the user of how many characters
+// were selected for the password length.
 function generatePassword() { 
   passwordLength = prompt("Please enter a pasword length between 8 and 128 characters long.", 12);
   passwordLengthInt= Math.round(passwordLength);
@@ -31,6 +36,10 @@ while (passwordLengthInt < 8  || passwordLengthInt > 128 || isNaN(passwordLength
  }
 alert("Great! You picked a password length of " + passwordLengthInt + " characters.");
 console.log("Your password length is " + passwordLengthInt + " characters.");
+
+// This do while function operates to ensure that at least one of the strings is used in creating
+// the password.  An if else function is used to alert after each choice letting the user aware of what they chose. If no choice
+// is made it loops them back to the beginning and has them pick at least one.
 
 do {
 alert("Please select one of the following to include in your password.")
@@ -43,7 +52,7 @@ if (passwordLower == true){
 console.log("Lowercase characters will be used. " + passwordLower);
 
 passwordUpper = confirm("Would you like to include Uppercase characters?");
-if (passwordUpper == true){
+if (passwordUpper === true){
     alert("Great! You chose to use uppercase in your password.");
   } else {
     alert("Oh no! You chose to not use uppercase in your password.");
@@ -51,7 +60,7 @@ if (passwordUpper == true){
 console.log("Uppercase characters will be used. " + passwordUpper);
 
 passwordNum = confirm("Would you like to include Numerical characters?");
-if (passwordNum == true){
+if (passwordNum === true){
   alert("Great! You chose to use Numerical characters in your password.");
 } else {
   alert("Oh no! You chose to not use Numerical characters in your password.");
@@ -59,7 +68,7 @@ if (passwordNum == true){
 console.log("Numerical characters will be used. " + passwordNum);
 
 passwordSpec = confirm("Would you like to include Special characters? (ie. !@#$)");
-if (passwordSpec == true){
+if (passwordSpec === true){
   alert("Great! You chose to use Special characters in your password.");
 } else {
   alert("Oh no! You chose to not use Special characters in your password.");
@@ -67,74 +76,37 @@ if (passwordSpec == true){
 console.log("Special characters will be used. " + passwordSpec);
 } while (!passwordLower && !passwordUpper && !passwordNum && !passwordSpec);
 
-if (passwordLower && passwordUpper && passwordNum && passwordSpec) {
-  charString = lowercase.concat(uppercase, numerical, special);
-  console.log("The String used will be " + charString);
+// The following if functions operate to add each respected string to the string that will be used
+// to pull the random amount of characters for the password. The console log then logs what the string will be.
+if (passwordLower) {
+  charSets.push(lowercase);
 }
 
-if (!passwordLower && passwordUpper && passwordNum && passwordSpec) {
-  charString = uppercase.concat(numerical, special);
-  console.log("The String used will be " + charString);
-} else if (passwordLower && !passwordUpper && passwordNum && passwordSpec) {
-  charString = lowercase.concat(numerical, special);
-  console.log("The String used will be " + charString);
-} else if (passwordLower && passwordUpper && !passwordNum && passwordSpec) {
-  charString =lowercase.concat(uppercase, special);
-  console.log("The String used will be " + charString);
-} else if (passwordLower && passwordUpper && passwordNum && !passwordSpec) {
-  charString =lowercase.concat(uppercase, numerical);
-  console.log("The String used will be " + charString);
+if (passwordUpper) {
+  charSets.push(uppercase);
 }
 
-if (!passwordLower && !passwordUpper && passwordNum && passwordSpec) {
-  charString =numerical.concat(special);
-  console.log("The String used will be " + charString);
-} else if (!passwordLower && passwordUpper && !passwordNum && passwordSpec) {
-  charString =uppercase.concat(special);
-  console.log("The String used will be " + charString);
-} else if (!passwordLower && passwordUpper && passwordNum && !passwordSpec) {
-  charString =uppercase.concat(numerical);
-  console.log("The String used will be " + charString);
-} else if (passwordLower && !passwordUpper && !passwordNum && passwordSpec){
-  charString =lowercase.concat(special);
-  console.log("The String used will be " + charString);
-} else if (passwordLower && !passwordUpper && passwordNum && !passwordSpec){
-  charString =lowercase.concat(numerical);
-  console.log("The String used will be " + charString);
-} else if (passwordLower && passwordUpper && !passwordNum && !passwordSpec){
-  charString =lowercase.concat(uppercase);
-  console.log("The String used will be " + charString);
+if (passwordNum) {
+  charSets.push(numerical);
 }
 
-if (passwordLower && !passwordUpper && !passwordNum && !passwordSpec) {
-  charString =lowercase;
-  console.log("The String used will be " + charString);
-} else if (!passwordLower && passwordUpper && !passwordNum && !passwordSpec) {
-  charString =  uppercase;
-  console.log("The String used will be " + charString);
-} else if (!passwordLower && !passwordUpper && passwordNum && !passwordSpec) {
-  charString = numerical;
-  console.log("The String used will be " + charString);
-}else if (!passwordLower && !passwordUpper && !passwordNum && passwordSpec) {
-  charString = special;
-  console.log("The String used will be " + charString);
+if (passwordSpec) {
+  charSets.push (special);
 }
-  
-  var password = "";
-  // var charStringLength = charString.Length;
 
+charString = charSets.join("");
+console.log("The String used will be " + charString)
+
+
+// This function builds the password based on the length that was selected, using Math.random and the
+// length of the string to determine how many characters will be chosen. 
   for (var i = 0; i < passwordLengthInt; i++) {
     var randomNumber = Math.floor(Math.random() * charString.length);
-    // var randomNumber = Math.floor(Math.random() * charStringLength)
     password += charString[randomNumber];
-    // String charCategory = charCategories.get(random.nextInt(charCategories.size()));
-    // int position = random.nextInt(charCategory.length());
-    // password.append(charCategory.charAt(position));
-
   }
   console.log("Your password is " + password + " and " + password.length + " characters long.");
   return password;
 }
- 
-// Add event listener to generate button
+
+// Sets an event listener for clicking of the generate button to fire off the writePassword function.
 generateBtn.addEventListener("click", writePassword);
