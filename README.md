@@ -39,4 +39,4 @@ They are then presented with the password that fits the length and character cho
 
 ## License
 
-This project falls under the MIT license which can be found under the LICENSE file in the github repository.  
+This project falls under the MIT license which can be found under the LICENSE file in the github repository.
